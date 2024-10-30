@@ -55,7 +55,7 @@ npm install
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/your-username/ScreenshotNoteApp.git
+   git clone https://github.com/sneh-ach/ScreenshotNoteApp.git
    cd ScreenshotNoteApp
    ```
 
