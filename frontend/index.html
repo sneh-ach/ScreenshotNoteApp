@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Screenshot and Note-Making Tool</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Screenshot and Note-Making Tool</h1>
+        <button @click="addNote">Add Note</button>
+        <button @click="addFlashcard">Add Flashcard</button>
+        <button @click="debugCode">Debug Code</button>
+        <p v-if="message">{{ message }}</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    message: ""
+                };
+            },
+            methods: {
+                async addNote() {
+                    const note = prompt("Enter your note:");
+                    try {
+                        const response = await axios.post('http://127.0.0.1:5000/add_note', { 
+                            screenshot_name: 'screenshot.png', 
+                            note 
+                        });
+                        this.message = response.data.message;
+                    } catch (error) {
+                        this.message = error.response ? error.response.data.error : "Error adding note";
+                    }
+                },
+                async addFlashcard() {
+                    const question = prompt("Enter flashcard question:");
+                    const answer = prompt("Enter flashcard answer:");
+                    try {
+                        const response = await axios.post('http://127.0.0.1:5000/add_flashcard', { question, answer });
+                        this.message = response.data.message;
+                    } catch (error) {
+                        this.message = error.response ? error.response.data.error : "Error adding flashcard";
+                    }
+                },
+                async debugCode() {
+                    const codeSnippet = prompt("Enter code to debug:");
+                    try {
+                        const response = await axios.post('http://127.0.0.1:5000/debug_code', { code_snippet: codeSnippet });
+                        this.message = `Suggestion: ${response.data.suggestion}`;
+                    } catch (error) {
+                        this.message = error.response ? error.response.data.error : "Error debugging code";
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

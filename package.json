@@ -1,0 +1,14 @@
+{
+    "name": "screenshot-note-app",
+    "version": "1.0.0",
+    "description": "A screenshot and note-taking tool with flashcard generation and AI debugging.",
+    "main": "frontend/main.js",
+    "scripts": {
+      "start": "electron ."
+    },
+    "dependencies": {
+      "axios": "^0.27.2",
+      "electron": "^20.1.0"
+    }
+  }
+  
