@@ -5,6 +5,7 @@ A desktop application for capturing screenshots, making notes, generating flashc
 
 ## Project Structure
 
+
 ```
 ScreenshotNoteApp/
 ├── backend/
